@@ -1,4 +1,38 @@
 ---
-// Sveltia CMS shell for Astro dev/preview. Production can use the same /admin route.
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TACOS PRESS CMS</title></head><body><script is:inline src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TACOS PRESS Newsroom | MariCMS</title>
+  <style>
+    :root{font-family:Arial,Helvetica,sans-serif;color:#171717;background:#f4f0e8}
+    *{box-sizing:border-box} body{margin:0} header{background:#171717;color:#fff;padding:18px 24px;border-bottom:5px solid #d54b1a}
+    .brand{font-family:Georgia,serif;font-size:26px;font-weight:700}.brand span{font:700 12px Arial;letter-spacing:.12em;margin-left:10px;color:#f0b34b}
+    main{max-width:920px;margin:48px auto;padding:0 24px}.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a43713}
+    h1{font:700 44px/1 Georgia,serif;margin:8px 0 14px}.lede{font-size:18px;line-height:1.5;max-width:650px;color:#444}
+    .panel{margin-top:30px;background:#fff;border:1px solid #cfc8bc;border-top:4px solid #171717;padding:28px;max-width:620px}
+    label{display:block;font-weight:700;margin-bottom:8px} input{width:100%;font-size:16px;padding:13px;border:1px solid #888}
+    button{margin-top:14px;width:100%;padding:13px;border:0;background:#171717;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+    .note{font-size:13px;line-height:1.5;color:#666;margin-top:16px}.dev{margin-top:22px;padding:12px;border-left:4px solid #d54b1a;background:#fff6e7;font-size:13px}
+  </style>
+</head>
+<body>
+<header><div class="brand">TACOS PRESS <span>MariCMS Newsroom</span></div></header>
+<main>
+  <div class="kicker">Publisher access</div>
+  <h1>Welcome to the newsroom.</h1>
+  <p class="lede">Writers and editors sign in with their approved email. No GitHub account, repository, access token, or developer tools are required.</p>
+  <section class="panel">
+    <form action="/cdn-cgi/access/login" method="get">
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" autocomplete="email" placeholder="mario@example.com" required />
+      <button type="submit">Continue securely</button>
+    </form>
+    <p class="note">Production authentication is provided by Cloudflare Access. Approved users receive a one-time sign-in code by email. GitHub remains private infrastructure behind MariCMS.</p>
+    <div class="dev"><strong>Local preview:</strong> authentication is intentionally not simulated on localhost. The email login becomes active when this /admin route is protected by Cloudflare Access.</div>
+  </section>
+</main>
+</body>
+</html>

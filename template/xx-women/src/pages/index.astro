@@ -1,5 +1,5 @@
 ---
-import Base from "../layouts/Base.astro";import {getCollection} from "astro:content";
+import Base from "../layouts/Base.astro";import {getCollection} from "astro:content";import {site} from "../site.config";
 const stories=(await getCollection("features")).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
 const hero=stories.find(s=>s.data.featured)||stories[0];const rest=stories.filter(s=>s.id!==hero?.id);
 ---

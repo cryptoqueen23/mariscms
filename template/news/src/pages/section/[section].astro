@@ -1,0 +1,4 @@
+---
+import Base from "../../layouts/Base.astro";import {getCollection} from "astro:content";export async function getStaticPaths(){const ss=await getCollection("stories");return [...new Set(ss.map(s=>s.data.section.toLowerCase()))].map(section=>({params:{section}}))}const section=Astro.params.section;const stories=(await getCollection("stories")).filter(s=>s.data.section.toLowerCase()===section).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
+---
+<Base title={`${section} | The Local Ledger`}><div class="label">Section</div><h1 style="font-size:56px;text-transform:capitalize">{section}</h1><div class="cards">{stories.map(s=><article class="card"><h3><a href={`/stories/${s.id}/`}>{s.data.title}</a></h3><p>{s.data.dek}</p><div class="meta">{s.data.author}</div></article>)}</div></Base>

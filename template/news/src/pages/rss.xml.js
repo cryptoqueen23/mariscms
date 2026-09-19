@@ -1,0 +1,1 @@
+import rss from "@astrojs/rss";import {getCollection} from "astro:content";export async function GET(context){const stories=await getCollection("stories");return rss({title:"The Local Ledger",description:"Independent local journalism.",site:context.site,items:stories.map(s=>({title:s.data.title,description:s.data.dek,pubDate:s.data.publishDate,link:`/stories/${s.id}/`}))})}

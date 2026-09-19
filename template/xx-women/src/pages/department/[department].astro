@@ -1,0 +1,6 @@
+---
+import Base from "../../layouts/Base.astro";import {getCollection} from "astro:content";
+export async function getStaticPaths(){const s=await getCollection("features");return [...new Set(s.map(x=>x.data.department))].map(d=>({params:{department:d.toLowerCase().replaceAll(" ","-").replaceAll("&","and")},props:{department:d}}))}
+const {department}=Astro.props;const s=await getCollection("features");const stories=s.filter(x=>x.data.department===department).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
+---
+<Base title={`${department} | XX WOMEN`}><div class="kicker">XX WOMEN</div><h1 style="font:700 64px var(--serif)">{department}</h1><div class="cards">{stories.map(x=><article class="card"><h3><a href={`/features/${x.id}/`}>{x.data.title}</a></h3><p>{x.data.dek}</p><div class="meta">{x.data.author}</div></article>)}</div></Base>

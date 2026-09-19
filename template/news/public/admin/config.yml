@@ -2,6 +2,7 @@ backend:
   name: github
   repo: cryptoqueen23/mariscms
   branch: main
+  base_url: https://centex-press-cms-auth.truewolfflix777.workers.dev
 
 media_folder: template/news/public/images/uploads
 public_folder: /images/uploads

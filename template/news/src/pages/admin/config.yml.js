@@ -1,0 +1,2 @@
+import fs from "node:fs";import path from "node:path";
+export function GET(){const file=path.join(process.cwd(),"public","admin","config.yml");return new Response(fs.readFileSync(file,"utf8"),{headers:{"Content-Type":"text/yaml; charset=utf-8","Cache-Control":"no-store"}})}

@@ -1,0 +1,33 @@
+---
+import { site } from "../site.config";
+const { title = site.name, description = site.description } = Astro.props;
+---
+<!doctype html>
+<html lang={site.locale}>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width">
+<meta name="description" content={description}><title>{title}</title>
+<style is:global>
+:root{--ink:#191716;--paper:#fbfaf7;--soft:#eee9e2;--accent:#8b314b;--muted:#706a65;--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}a{text-decoration:none;color:inherit}.wrap{width:min(1240px,92%);margin:auto}
+.top{font:700 10px var(--sans);letter-spacing:.16em;border-bottom:1px solid #d8d1c9;padding:9px 0;text-align:center}
+.mast{padding:27px 0 19px;text-align:center}.mast a{font:900 clamp(46px,8vw,94px)/.82 var(--serif);letter-spacing:-.07em}.tag{font:11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:13px}
+.nav{border-block:1px solid var(--ink);overflow:auto}.nav .wrap{display:flex;justify-content:center;gap:25px;padding:12px 0;white-space:nowrap;font:700 10px var(--sans);letter-spacing:.08em;text-transform:uppercase}
+main{padding:34px 0 80px}.kicker{font:700 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.65fr 1fr;gap:30px;border-bottom:1px solid #cfc8c0;padding-bottom:32px}.hero h1{font:700 clamp(43px,6vw,76px)/.94 var(--serif);margin:8px 0 14px}.dek{font:19px/1.48 var(--serif);color:#514d49}.meta{font:10px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.aside{border-left:1px solid #cfc8c0;padding-left:25px}.aside h2{font:32px/1 var(--serif)}
+.section-head{display:flex;justify-content:space-between;align-items:end;border-bottom:2px solid var(--ink);margin-top:42px;padding-bottom:8px}.section-head h2{font:30px var(--serif);margin:0}.section-head span{font:10px var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:22px}.card{border-top:1px solid #cfc8c0;padding-top:13px}.card h3{font:700 27px/1.02 var(--serif);margin:7px 0}.card p{font:16px/1.45 var(--serif);color:#514d49}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:30px}.feature{border-top:4px solid var(--ink);padding-top:12px}.feature h3{font:700 34px/1 var(--serif);margin:7px 0}
+.footer{border-top:3px double var(--ink);padding:30px 0 60px;font:11px/1.6 var(--sans);color:var(--muted)}
+article.prose{max-width:800px;margin:auto}.prose h1{font:700 clamp(44px,7vw,78px)/.94 var(--serif);margin:8px 0}.prose .body{font:19px/1.75 var(--serif)}.prose .body h2{font:34px var(--serif);line-height:1.05}.prose .body blockquote{border-left:3px solid var(--accent);margin-left:0;padding-left:20px}
+@media(max-width:760px){.hero,.grid2{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.aside{border-left:0;border-top:1px solid #cfc8c0;padding:20px 0 0}.nav .wrap{justify-content:flex-start}.mast{text-align:left}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">{site.topLine}</div></div>
+<header class="mast wrap"><a href="/">{site.name}</a><div class="tag">{site.tagline}</div></header>
+<nav class="nav"><div class="wrap">{site.departments.map(d=><a href={`/department/${d.toLowerCase().replaceAll(" ","-").replaceAll("&","and")}`}>{d}</a>)}</div></nav>
+<main class="wrap"><slot /></main>
+<footer class="footer"><div class="wrap"><strong>{site.name}</strong><br>{site.tagline}<br><br>Editorial content, commerce and sponsored material are clearly distinguished.</div></footer>
+</body></html>

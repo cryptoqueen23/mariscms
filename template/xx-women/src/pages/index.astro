@@ -2,15 +2,11 @@
 import Base from "../layouts/Base.astro";import {getCollection} from "astro:content";
 const stories=(await getCollection("features")).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
 const hero=stories.find(s=>s.data.featured)||stories[0];const rest=stories.filter(s=>s.id!==hero?.id);
-const byDept=[...new Set(rest.map(s=>s.data.department))].slice(0,3);
 ---
 <Base title="XX WOMEN | The Art of Being a Woman">
-<section class="hero">
-<div><div class="kicker">{hero?.data.department}</div><h1><a href={`/features/${hero?.id}/`}>{hero?.data.title}</a></h1><p class="dek">{hero?.data.dek}</p><div class="meta">By {hero?.data.author} · {hero?.data.publishDate.toLocaleDateString()}</div></div>
-<aside class="aside"><div class="kicker">XX WOMEN</div><h2>The art of being a woman, in every season of life.</h2><p class="dek">Style, beauty, money, home, work, family, culture and faith, treated as a whole life rather than separate worlds.</p></aside>
-</section>
-<div class="section-head"><h2>Latest</h2><span>Editor's picks</span></div>
-<div class="cards">{rest.slice(0,6).map(s=><article class="card"><div class="kicker">{s.data.department}</div><h3><a href={`/features/${s.id}/`}>{s.data.title}</a></h3><p>{s.data.dek}</p><div class="meta">{s.data.contentType} · {s.data.author}</div></article>)}</div>
-<div class="section-head"><h2>Departments</h2><span>Explore XX</span></div>
-<div class="grid2">{byDept.map(d=><section class="feature"><div class="kicker">{d}</div><h3>{d}</h3><p class="dek">The latest stories, guides and ideas from XX WOMEN.</p></section>)}</div>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">{hero?.data.department} · {hero?.data.contentType}</div><h1><a href={`/features/${hero?.id}/`}>{hero?.data.title}</a></h1><p class="dek">{hero?.data.dek}</p><div class="meta">By {hero?.data.author} · {hero?.data.publishDate.toLocaleDateString()}</div></div><div class="hero-art"><div class="hero-note">The<br>Art of<br>Being a<br>Woman</div></div></section>
+<div class="rule"><h2>From the Magazine</h2><span>XX WOMEN · Current stories</span></div>
+<section class="latest">{rest.slice(0,3).map((s,i)=><article class:list={["story",i>0&&"small"]}><div class:list={["story-image",i===0&&"tall"]}></div><div class="eyebrow">{s.data.department}</div><h3><a href={`/features/${s.id}/`}>{s.data.title}</a></h3><p>{s.data.dek}</p><div class="meta">{s.data.contentType} · {s.data.author}</div></article>)}</section>
+<section class="split"><div class="package"><div class="num">The XX Package</div><h2>The Beauty Issue</h2><p>Beauty, style and the rituals that make getting ready feel like a pleasure rather than a chore.</p></div><div class="package"><div class="num">The XX Package</div><h2>The Money Issue</h2><p>Work, investing, family economics and the practical decisions that shape a woman's financial life.</p></div></section>
+<div class="rule"><h2>Explore XX</h2><span>Departments</span></div><nav class="departments">{site.departments.map(d=><a href={`/department/${d.toLowerCase().replaceAll(" ","-").replaceAll("&","and")}`}>{d}</a>)}</nav>
 </Base>

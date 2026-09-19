@@ -1,0 +1,79 @@
+backend:
+  name: github
+  repo: cryptoqueen23/mariscms
+  branch: main
+
+media_folder: template/xx-women/public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: features
+    label: Features & Departments
+    folder: template/xx-women/src/content/features
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Dek, name: dek, widget: text }
+      - label: Department
+        name: department
+        widget: select
+        options: [Style, Beauty, Home, Food, Wellness, "Love & Family", Money, Work, Travel, Culture, Faith, Pro-Life, Politics, Voices, Shop]
+      - { label: Author, name: author, widget: string }
+      - { label: Publish Date, name: publishDate, widget: datetime }
+      - { label: Updated, name: updatedDate, widget: datetime, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - label: Content Type
+        name: contentType
+        widget: select
+        options: [Feature, Report, Profile, Interview, Essay, Guide, Review, Recipe, How-To, Column, Shopping, "News Brief"]
+      - { label: Package / Issue Theme, name: package, widget: string, required: false }
+      - { label: Issue, name: issue, widget: string, required: false }
+      - { label: Hero Image, name: heroImage, widget: image, required: false }
+      - { label: Image Alt Text, name: heroAlt, widget: string, required: false }
+      - { label: Image Credit, name: imageCredit, widget: string, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - label: Sources
+        name: sources
+        widget: list
+        required: false
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: URL, name: url, widget: string }
+      - { label: Commercial Disclosure, name: disclosure, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: voices
+    label: Voices
+    folder: template/xx-women/src/content/voices
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Dek, name: dek, widget: text }
+      - { label: Author, name: author, widget: string }
+      - { label: Type, name: type, widget: select, options: [Essay, Column, Letter, Commentary] }
+      - { label: Publish Date, name: publishDate, widget: datetime }
+      - { label: Department, name: department, widget: string }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: recipes
+    label: Recipes
+    folder: template/xx-women/src/content/recipes
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Dek, name: dek, widget: text }
+      - { label: Author, name: author, widget: string }
+      - { label: Publish Date, name: publishDate, widget: datetime }
+      - { label: Prep Time, name: prepTime, widget: string, required: false }
+      - { label: Cook Time, name: cookTime, widget: string, required: false }
+      - { label: Servings, name: servings, widget: string, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Body, name: body, widget: markdown }

@@ -1,0 +1,4 @@
+---
+import Base from "../layouts/Base.astro";import {getCollection} from "astro:content";const briefs=(await getCollection("briefs")).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+---
+<Base title="Live Wire | The Local Ledger"><div class="label">Developing</div><h1 style="font-size:56px">Live Wire</h1><p class="dek">Short newsroom updates, in chronological order.</p>{briefs.map(b=><article class="brief"><div class="meta">{b.data.date.toLocaleTimeString([],{hour:"numeric",minute:"2-digit"})}</div><div><div class="label">{b.data.section}</div><h2>{b.data.title}</h2><p>{b.data.summary}</p><div class="meta">By {b.data.author}</div></div></article>)}</Base>

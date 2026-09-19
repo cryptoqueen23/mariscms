@@ -1,0 +1,44 @@
+backend:
+  name: github
+  repo: cryptoqueen23/mariscms
+  branch: main
+
+media_folder: template/news/public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: stories
+    label: Stories
+    folder: template/news/src/content/stories
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Headline, name: title, widget: string }
+      - { label: Dek, name: dek, widget: text }
+      - { label: Author, name: author, widget: string }
+      - { label: Section, name: section, widget: select, options: [Local, Government, Schools, Business, Community, Investigations, Opinion] }
+      - { label: Publish Date, name: publishDate, widget: datetime }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Breaking, name: breaking, widget: boolean, default: false }
+      - { label: Hero Image, name: heroImage, widget: image, required: false }
+      - { label: Image Alt Text, name: heroAlt, widget: string, required: false }
+      - { label: Image Credit, name: imageCredit, widget: string, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - { label: Corrections Note, name: correctionsNote, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+  - name: briefs
+    label: Live Wire Briefs
+    folder: template/news/src/content/briefs
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Headline, name: title, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Author, name: author, widget: string }
+      - { label: Section, name: section, widget: select, required: false, options: [Local, Government, Schools, Business, Community, Investigations, Opinion] }
+      - { label: Body, name: body, widget: markdown, required: false }
